@@ -1,0 +1,151 @@
+/* Define variables for light theme (default) */
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --card-bg: #fff;
+    --card-border: #ddd;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --header-color: #333;
+    --link-color: #0056b3;
+    --label-color: #333;
+    --value-color: #555;
+    --button-bg: #007bff;
+    --button-text: #fff;
+    --button-hover-bg: #0056b3;
+    --status-online-bg: #28a745;
+    --status-online-text: #fff;
+    --status-offline-bg: #dc3545;
+    --status-offline-text: #fff;
+    --status-error-bg: #ffc107;
+    --status-error-text: #333; /* Darker text for yellow */
+}
+
+/* Define variables for dark theme */
+body.dark-theme {
+    --bg-color: #121212; /* Dark background */
+    --text-color: #e0e0e0; /* Light text */
+    --card-bg: #1e1e1e; /* Slightly lighter dark for cards */
+    --card-border: #444; /* Darker border */
+    --card-shadow: rgba(0, 0, 0, 0.4); /* Darker shadow */
+    --header-color: #e0e0e0;
+    --link-color: #90caf9; /* Lighter blue for links */
+    --label-color: #bbb; /* Lighter label color */
+    --value-color: #ccc; /* Lighter value color */
+    --button-bg: #333;
+    --button-text: #e0e0e0;
+    --button-hover-bg: #555;
+    --status-online-bg: #1a5c2d; /* Darker green */
+    --status-online-text: #e0e0e0;
+    --status-offline-bg: #7e232b; /* Darker red */
+    --status-offline-text: #e0e0e0;
+    --status-error-bg: #b38600; /* Darker yellow */
+    --status-error-text: #e0e0e0; /* Light text for dark yellow */
+}
+
+/* Apply variables to elements */
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+h1 {
+    text-align: center;
+    color: var(--header-color);
+}
+
+/* Add styles for the theme toggle button */
+.theme-toggle-button {
+    position: fixed; /* Or absolute, depending on layout */
+    top: 15px;
+    right: 20px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border: 1px solid var(--card-border);
+    border-radius: 5px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-size: 0.9em;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-text);
+}
+
+
+.server-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.server-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 15px;
+    min-width: 250px;
+    box-shadow: 0 2px 4px var(--card-shadow);
+    transition: transform 0.2s ease-in-out, background-color 0.3s, border-color 0.3s;
+}
+
+.server-card:hover {
+    transform: translateY(-5px);
+}
+
+.server-card h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    color: var(--link-color); /* Use link color for header */
+}
+
+.server-card p {
+    margin: 8px 0;
+    font-size: 0.95em;
+    color: var(--value-color); /* Use value color */
+}
+
+.server-card .label {
+    font-weight: bold;
+    color: var(--label-color); /* Use label color */
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Use variables for status colors */
+.status-online {
+    background-color: var(--status-online-bg);
+    color: var(--status-online-text);
+}
+
+.status-offline {
+    background-color: var(--status-offline-bg);
+    color: var(--status-offline-text);
+}
+
+.status-error {
+    background-color: var(--status-error-bg);
+    color: var(--status-error-text);
+}
+
+/* Error message styling */
+.error-message {
+    color: var(--status-offline-bg); /* Use offline color for errors */
+    font-weight: bold;
+    text-align: center;
+    width: 100%; /* Span across container */
+}

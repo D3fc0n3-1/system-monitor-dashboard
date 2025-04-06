@@ -1,0 +1,27 @@
+
+
+Additional Explanations for Code Understanding:
+
+    Backend (backend/main.py):
+        Uses the FastAPI framework to create a web server.
+        Defines two main API endpoints:
+            /servers (GET): Loads server configurations from config.yaml, iterates through each server, calls fetch_glances_data for each, processes the data to calculate overview metrics (CPU %, Mem %, Disk MB/s, Net Mbps), handles errors gracefully (returning “offline” or “error” status), and returns a list of server overview dictionaries.
+            /servers/{server_id} (GET): Fetches the full raw JSON data from the specified server’s Glances API. (Currently not used by the basic frontend, but available).
+        fetch_glances_data: Uses the requests library to make an HTTP GET request to a specific Glances API URL. Includes error handling for network issues and bad responses. Uses urljoin to safely construct the final API URL.
+        config.py: Uses the PyYAML library to safely load the server list from config.yaml.
+        Uses Uvicorn as the ASGI server to run the FastAPI application.
+    Frontend (frontend/script.js):
+        Uses standard browser Fetch API to make asynchronous requests to the backend’s /servers endpoint.
+        Uses setInterval to repeatedly call the fetch function, creating the auto-refresh effect.
+        Manipulates the DOM (Document Object Model) to display data:
+            Selects the main container (<div id="server-list">).
+            Clears existing content (innerHTML = '').
+            Loops through the server data array received from the backend.
+            Dynamically creates div elements (document.createElement) for each server card.
+            Sets the innerHTML of each card with the server’s details, using template literals for easier string construction.
+            Applies CSS classes (classList.add) for styling (e.g., server-card, status-online).
+            Appends the new card elements to the container (appendChild).
+        Handles theme toggling using CSS variables and localStorage:
+            Reads/writes the theme preference ('light' or 'dark') to the browser’s localStorage.
+            Adds/removes the dark-theme class on the <body> element based on the current theme.
+            Updates the toggle button text accordingly.
