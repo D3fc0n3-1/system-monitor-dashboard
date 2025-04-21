@@ -106,7 +106,7 @@ async def get_servers_overview() -> List[Dict[str, Any]]:
                         rx = interface.get('bytes_recv_rate_per_sec', interface.get('rx_bytes_ps', 0)) or 0
                         # print(f"DEBUG: {server_name} - Interface {i} IS dict. tx_ps={tx}, rx_ps={rx}")
                         net_io_bytes_sec_list.append(tx + rx)
-                    else:
+                    # else:
                         # print(f"WARN: {server_name} - Interface {i} in list IS NOT dict. Skipping.")
                 # print(f"DEBUG: {server_name} - net_io_bytes_sec_list: {net_io_bytes_sec_list}")
                 net_io_bytes_sec_total = sum(net_io_bytes_sec_list)
