@@ -2,7 +2,8 @@ const serverListContainer = document.getElementById('server-list');
 const themeToggleButton = document.getElementById('theme-toggle-button');
 const bodyElement = document.body;
 
-const backendUrl = 'http://127.0.0.1:8000/servers';
+// const backendUrl = 'http://127.0.0.1:8000/servers';
+const backendUrl = '/servers'; //
 const refreshInterval = 5000; // Refresh every 5 seconds
 const themeLocalStorageKey = 'dashboard-theme'; // Key for localStorage
 

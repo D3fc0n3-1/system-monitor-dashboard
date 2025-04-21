@@ -3,8 +3,26 @@ from typing import List, Dict, Any
 import requests
 import config  # Import the config module
 from urllib.parse import urljoin
+from fastapi.staticfiles import StaticFiles S
+from fastapi.responses import FileResponse   
+import os
+
+# Determine the base directory of the backend script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Construct the path to the frontend directory (assuming it's one level up)
+FRONTEND_DIR = os.path.join(BASE_DIR, "..", "frontend")
 
 app = FastAPI()
+
+# Check if FRONTEND_DIR exists before mounting
+if os.path.isdir(FRONTEND_DIR):
+     # Mount the static directory AFTER all other API routes are defined is common,
+     # but for serving index.html at root, mounting first might be needed,
+     # or handle index.html explicitly. Let's mount it.
+     # Ensure API routes are still accessible. FastAPI handles precedence.
+     app.mount("/", StaticFiles(directory=FRONTEND_DIR, html=True), name="frontend")
+else:
+    print(f"WARNING: Frontend directory not found at {FRONTEND_DIR}. Static files will not be served.")
 
 SERVER_CONFIGS = []  # Global variable to store server configurations
 
@@ -152,3 +170,12 @@ async def get_server_details(server_id: str) -> Dict[str, Any]:
         raise e # Re-raise the HTTPException from fetch_glances_data
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error retrieving server details: {e}")
+
+# --- Optional: Explicit route for index.html (alternative if mount doesn't work as expected) ---
+# @app.get("/", response_class=FileResponse)
+# async def read_index():
+#     index_path = os.path.join(FRONTEND_DIR, "index.html")
+#     if os.path.exists(index_path):
+#         return FileResponse(index_path)
+#     else:
+#         raise HTTPException(status_code=404, detail="Index.html not found")

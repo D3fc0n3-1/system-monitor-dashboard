@@ -29,7 +29,7 @@ A simple web-based dashboard that displays real-time resource usage (CPU, Memory
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url> # Replace with your actual repo URL
+    git clone https://github.com/D3fc0n3-1/system-monitor-dashboard
     cd system-monitor-dashboard
     ```
 
@@ -96,10 +96,10 @@ A simple web-based dashboard that displays real-time resource usage (CPU, Memory
 *   Use the "Toggle Theme" button in the top-right corner to switch between light and dark modes. Your preference is saved locally in your browser.
 *   If a server is unreachable or Glances is not running correctly, it will show an "Offline" or "Error" status with details if available.
 
-## (Optional) Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit pull requests or open issues for bugs and feature requests.
 
-## (Optional) License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details (if you choose to add one).

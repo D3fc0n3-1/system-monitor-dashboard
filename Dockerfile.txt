@@ -1,0 +1,25 @@
+# Use an official Python runtime as a parent image
+FROM python:3.11-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the requirements file first to leverage Docker cache
+COPY backend/requirements.txt ./backend/
+
+# Install any needed dependencies specified in requirements.txt
+RUN pip install --no-cache-dir -r backend/requirements.txt
+
+# Copy the backend directory contents into the container at /app/backend
+COPY backend/ ./backend/
+
+# Copy the frontend directory contents into the container at /app/frontend
+COPY frontend/ ./frontend/
+
+# Make port 8000 available to the world outside this container (where Uvicorn will listen)
+EXPOSE 8000
+
+# Define the command to run your app using uvicorn
+# Ensure it points to the FastAPI app object inside the backend directory
+# Use 0.0.0.0 to make it accessible from outside the container
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]

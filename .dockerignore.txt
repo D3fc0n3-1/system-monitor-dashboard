@@ -1,0 +1,25 @@
+# Ignore Python virtual environment
+.venv/
+venv/
+env/
+
+# Ignore Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Git directory
+.git/
+.gitignore
+
+# Ignore Docker files themselves if they are in context
+Dockerfile
+.dockerignore
+
+# Any other build artifacts or local config you don't want in the image
+*.log
